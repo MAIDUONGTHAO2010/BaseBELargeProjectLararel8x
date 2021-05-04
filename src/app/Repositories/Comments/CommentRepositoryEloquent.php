@@ -1,0 +1,37 @@
+<?php
+
+namespace App\Repositories;
+
+use Prettus\Repository\Eloquent\BaseRepository;
+use Prettus\Repository\Criteria\RequestCriteria;
+use App\Repositories\Comments\CommentRepository;
+use App\Entities\Comment;
+
+/**
+ * Class CommentRepositoryEloquent.
+ *
+ * @package namespace App\Repositories\Comments;
+ */
+class CommentRepositoryEloquent extends BaseRepository implements CommentRepository
+{
+    /**
+     * Specify Model class name
+     *
+     * @return string
+     */
+    public function model()
+    {
+        return Comment::class;
+    }
+
+    
+
+    /**
+     * Boot up the repository, pushing criteria
+     */
+    public function boot()
+    {
+        $this->pushCriteria(app(RequestCriteria::class));
+    }
+    
+}
